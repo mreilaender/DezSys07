@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.example.greeting;
+package at.geyerritter.dezsys07.example;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
