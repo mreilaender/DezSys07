@@ -8,8 +8,7 @@ echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | sudo
 apt-get update
 apt-get dist-upgrade -y
 
-apt-get install -y mongodb-org
-apt-get install p7zip p7zip-full
+apt-get install -y mongodb-org p7zip p7zip-full
 
 7z e /home/vagrant/mongo-dumps/data.7z
 
