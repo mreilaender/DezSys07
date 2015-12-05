@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.example;
+package at.geyerritter.dezsys07.example.greeting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
