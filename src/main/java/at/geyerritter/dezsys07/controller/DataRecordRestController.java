@@ -15,8 +15,9 @@ public class DataRecordRestController {
     private MongoDBDataRecordService service;
 
     @RequestMapping(value="/datarecords", method= RequestMethod.GET)
-    public ResponseEntity<DataRecordDTO> findDataRecordsByName(@RequestParam(value = "name") String name) {
-        if (name == null || name.length() < 3)
+    public ResponseEntity<DataRecordDTO> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
+
+        if (name.length() < 3)
             return new ResponseEntity<DataRecordDTO>(HttpStatus.LENGTH_REQUIRED);
 
         return new ResponseEntity<DataRecordDTO>(service.findByName(name), HttpStatus.OK);
