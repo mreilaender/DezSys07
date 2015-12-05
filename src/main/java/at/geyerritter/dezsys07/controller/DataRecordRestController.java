@@ -1,6 +1,5 @@
 package at.geyerritter.dezsys07.controller;
 
-import at.geyerritter.dezsys07.DataRecord;
 import at.geyerritter.dezsys07.DataRecordDTO;
 import at.geyerritter.dezsys07.MongoDBDataRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,26 +13,26 @@ public class DataRecordRestController {
     @Autowired
     private MongoDBDataRecordService service;
 
-    @RequestMapping(value="/datarecords", method= RequestMethod.GET)
+    @RequestMapping(value = "/datarecords", method = RequestMethod.GET)
     public ResponseEntity<DataRecordDTO> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
 
         if (name.equals(""))
             return new ResponseEntity<DataRecordDTO>(service.findAll(), HttpStatus.OK);
 
         if (name.length() < 3)
-            return new ResponseEntity<DataRecordDTO>(HttpStatus.LENGTH_REQUIRED);
+            return new ResponseEntity<>(HttpStatus.LENGTH_REQUIRED);
 
-        return new ResponseEntity<DataRecordDTO>(service.findByName(name), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByName(name), HttpStatus.OK);
     }
 
 
-    @RequestMapping(value="/datarecords/{id}", method= RequestMethod.GET)
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET)
     public ResponseEntity<DataRecordDTO> findDataRecord(@PathVariable String id) {
         try {
-            return new ResponseEntity<DataRecordDTO>(service.findById(id), HttpStatus.OK);
+            return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<DataRecordDTO>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

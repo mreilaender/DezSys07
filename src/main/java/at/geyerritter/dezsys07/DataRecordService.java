@@ -1,5 +1,7 @@
 package at.geyerritter.dezsys07;
 
+import java.util.List;
+
 public interface DataRecordService {
 
     DataRecordDTO create(DataRecordDTO todo);
@@ -9,6 +11,8 @@ public interface DataRecordService {
     DataRecordDTO findById(String id);
 
     DataRecordDTO findByName(String name);
+
+    List<DataRecordDTO> findAll();
 
     DataRecordDTO update(DataRecordDTO todo);
 

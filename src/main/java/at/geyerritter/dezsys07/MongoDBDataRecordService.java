@@ -3,6 +3,11 @@ package at.geyerritter.dezsys07;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class MongoDBDataRecordService implements DataRecordService {
 
@@ -41,6 +46,13 @@ public class MongoDBDataRecordService implements DataRecordService {
     public DataRecordDTO findByName(String name) {
         DataRecord found = repository.findByName(name);
         return convertToDTO(found);
+    }
+
+    @Override
+    public List<DataRecordDTO> findAll() {
+        List<DataRecord> records = repository.findAll();
+
+        return records.stream().map(this::convertToDTO).collect(toList());
     }
 
     @Override
