@@ -1,0 +1,55 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# vim: ts=2 sw=2 et
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+# Vagrant configuration
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+
+  # puppet Configuration for all VMs
+
+  # box to use
+  config.vm.box = "debian/jessie64"
+
+  ######################## SERVER ###########################
+  config.vm.hostname = "dezsys07.geyerritter.at"
+
+  #config.vm.provider "virtualbox" do |vbox, override|
+  #end
+
+  config.vm.synced_folder "./shared", "/home/vagrant/mongo-dump/"
+
+  # eth1: hostonly
+  config.vm.network "private_network", ip: "192.168.10.200"
+
+  config.vm.provision "shell" do |shell|
+    shell.path = "shell/default.sh"
+  end
+
+  # definition for Puppet to use the configuration for all VMs in 'manifest/default_all.pp'
+  # puppet needs also moduls to execute the configuration
+  #config.vm.provision "puppet" do |puppet|
+  # global configuration directory
+  # puppet.manifests_path = "manifests"
+  # main configuration file
+  # puppet.manifest_file  = "default.pp"
+  # puppet modules path
+  # puppet.module_path    = "modules"
+  # DEBUG
+  # puppet.options << '--verbose'
+  # puppet.options << '--debug'
+  #end
+
+  # DEBUG
+  # so virtualbox shows the gui
+  # config.vm.provider "virtualbox" do |vbox, override|
+  #   vbox.gui = true
+  # end
+
+end
+
