@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.example;
 
 public class Greeting {
 
