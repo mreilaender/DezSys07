@@ -16,7 +16,7 @@ service mongod restart
 7z e /home/vagrant/mongo-dump/data.7z
 
 # import test data records (10)
-mongoimport --db testdb --collection datarecords --type json --file /home/vagrant/mongo-dump/testdata.json --jsonArray
+mongoimport --db testdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/testdata.json --jsonArray
 # TODO import 1.000.000 data records into different db
 
 echo "### END default.sh ###"

@@ -17,4 +17,6 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
     protected String getDatabaseName() {
         return "testdb";
     }
+
+
 }
