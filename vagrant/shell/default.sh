@@ -11,5 +11,6 @@ apt-get dist-upgrade -y
 apt-get install -y mongodb-org
 apt-get install p7zip p7zip-full
 
-echo "### END default.sh ###"
+7z e /home/vagrant/mongo-/dumps/data.7z
 
+echo "### END default.sh ###"
