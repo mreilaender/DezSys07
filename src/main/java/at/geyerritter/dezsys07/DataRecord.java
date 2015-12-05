@@ -10,6 +10,9 @@ import org.springframework.data.annotation.Id;
  */
 public class DataRecord {
 
+    static final int MAX_LENGTH_NAME = 100;
+    static final int MAX_LENGTH_DESCRIPTION = 500;
+
     @Id
     private String id;
 
@@ -29,5 +32,29 @@ public class DataRecord {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
