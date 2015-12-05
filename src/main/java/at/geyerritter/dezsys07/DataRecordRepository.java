@@ -17,5 +17,4 @@ public interface DataRecordRepository extends MongoRepository<DataRecord, String
      * @return The DataRecord if found, null otherwise
      */
     DataRecord findByName(@Param("name") String name);
-
 }

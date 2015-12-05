@@ -4,7 +4,9 @@ public interface DataRecordService {
 
     DataRecordDTO create(DataRecordDTO todo);
 
-    DataRecordDTO delete(String name);
+    DataRecordDTO delete(String id);
+
+    DataRecordDTO findById(String id);
 
     DataRecordDTO findByName(String name);
 
