@@ -8,7 +8,8 @@ echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | sudo
 apt-get update
 apt-get dist-upgrade -y
 
-sudo apt-get install -y mongodb-org
+apt-get install -y mongodb-org
+apt-get install p7zip p7zip-full
 
 echo "### END default.sh ###"
 
