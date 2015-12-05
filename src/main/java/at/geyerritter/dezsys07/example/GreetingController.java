@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.example.greeting;
+package at.geyerritter.dezsys07.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
