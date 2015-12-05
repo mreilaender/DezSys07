@@ -18,7 +18,7 @@ cd /home/vagrant/mongo-dumps
 mongoimport --db testdb --collection datarecords --type json --file testdata.json --jsonArray
 # TODO import 1.000.000 data records into different db
 
-sed "s/127.0.0.1/192.168.10.200/" -i /etc/mongod.conf
+sed "s/127.0.0.1/0.0.0.0/" -i /etc/mongod.conf
 service mongod restart
 
 echo "### END default.sh ###"
