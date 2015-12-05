@@ -1,10 +1,10 @@
 package at.geyerritter.dezsys07;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -37,15 +37,17 @@ public class MongoDBDataRecordService implements DataRecordService {
     }
 
     @Override
-    public DataRecordDTO findById(String id) {
+    public DataRecordDTO findById(String id) throws EmptyResultDataAccessException {
         DataRecord found = repository.findOne(id);
+        if (found == null)
+            throw new EmptyResultDataAccessException("There is no data record with id " + id, 1);
         return convertToDTO(found);
     }
 
     @Override
-    public DataRecordDTO findByName(String name) {
-        DataRecord found = repository.findByName(name);
-        return convertToDTO(found);
+    public List<DataRecordDTO> findByNameContainingIgnoreCase(String name) {
+        List<DataRecord> records = repository.findByNameContainingIgnoreCase(name);
+        return records.stream().map(this::convertToDTO).collect(toList());
     }
 
     @Override

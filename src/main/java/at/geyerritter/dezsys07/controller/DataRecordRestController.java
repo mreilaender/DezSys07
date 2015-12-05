@@ -3,6 +3,7 @@ package at.geyerritter.dezsys07.controller;
 import at.geyerritter.dezsys07.DataRecordDTO;
 import at.geyerritter.dezsys07.MongoDBDataRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,11 @@ public class DataRecordRestController {
     private MongoDBDataRecordService service;
 
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET)
-    public ResponseEntity<List<DataRecordDTO>> findDataRecordsByName() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<DataRecordDTO>> findDataRecordsByName(@RequestParam(value = "search", defaultValue = "") String search) {
+        if (search.length() == 0)
+            return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(service.findByNameContainingIgnoreCase(search), HttpStatus.OK);
     }
 
 
@@ -25,9 +29,8 @@ public class DataRecordRestController {
     public ResponseEntity<DataRecordDTO> findDataRecord(@PathVariable String id) {
         try {
             return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (EmptyResultDataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
