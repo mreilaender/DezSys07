@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class DataRecordRestController {
 
@@ -14,15 +16,8 @@ public class DataRecordRestController {
     private MongoDBDataRecordService service;
 
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET)
-    public ResponseEntity<DataRecordDTO> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
-
-        if (name.equals(""))
-            return new ResponseEntity<DataRecordDTO>(service.findAll(), HttpStatus.OK);
-
-        if (name.length() < 3)
-            return new ResponseEntity<>(HttpStatus.LENGTH_REQUIRED);
-
-        return new ResponseEntity<>(service.findByName(name), HttpStatus.OK);
+    public ResponseEntity<List<DataRecordDTO>> findDataRecordsByName() {
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
 
