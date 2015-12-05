@@ -11,6 +11,12 @@ apt-get dist-upgrade -y
 apt-get install -y mongodb-org
 apt-get install p7zip p7zip-full
 
-7z e /home/vagrant/mongo-/dumps/data.7z
+7z e /home/vagrant/mongo-dumps/data.7z
+
+cd /home/vagrant/mongo-dumps
+# import test data records (10)
+mongoimport --db testdb --collection datarecords --type json --file testdata.json --jsonArray
+# TODO import 1.000.000 data records into different db
+
 
 echo "### END default.sh ###"
