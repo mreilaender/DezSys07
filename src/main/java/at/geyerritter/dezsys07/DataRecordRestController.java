@@ -23,13 +23,6 @@ public class DataRecordRestController {
             return new ResponseEntity<>(service.findByNameContainingIgnoreCase(search), HttpStatus.OK);
     }
 
-
-    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET)
-    public ResponseEntity<DataRecordDTO> findDataRecord(@PathVariable String id) {
-        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
-    }
-
-
     @RequestMapping(value="/datarecords", method = RequestMethod.POST)
     public ResponseEntity<DataRecordDTO> createDataRecord(@RequestBody DataRecordDTO dataRecordDTO) {
 
@@ -37,12 +30,23 @@ public class DataRecordRestController {
         dataRecordDTO.setId(null);
 
         service.create(dataRecordDTO);
-
-
         return new ResponseEntity<>(dataRecordDTO, HttpStatus.CREATED);
     }
 
 
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET)
+    public ResponseEntity<DataRecordDTO> findDataRecord(@PathVariable String id) {
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<DataRecordDTO> updateDataRecord(@PathVariable String id, @RequestBody DataRecordDTO newDataRecord) {
+        DataRecordDTO dataRecord = service.findById(id);
+        dataRecord.setName(newDataRecord.getName());
+        dataRecord.setDescription(newDataRecord.getDescription());
+
+        return new ResponseEntity<>(service.update(dataRecord), HttpStatus.OK);
+    }
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
