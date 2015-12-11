@@ -10,7 +10,7 @@ apt-get dist-upgrade -y
 
 apt-get install -y mongodb-org p7zip p7zip-full
 
-sed "s/127.0.0.1/0.0.0.0/" -i /etc/mongod.conf
+sed "s/192.168.10.200/0.0.0.0/" -i /etc/mongod.conf
 
 service mongod stop
 service mongod start
