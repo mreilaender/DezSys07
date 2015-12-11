@@ -1,8 +1,5 @@
 package at.geyerritter.dezsys07;
 
-import at.geyerritter.dezsys07.DataRecordDTO;
-import at.geyerritter.dezsys07.MongoDBDataRecordService;
-import jdk.nashorn.internal.runtime.JSONFunctions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -45,11 +42,23 @@ public class DataRecordRestController {
         return new ResponseEntity<>(dataRecordDTO, HttpStatus.CREATED);
     }
 
-    @ExceptionHandler({IllegalArgumentException.class, EmptyResultDataAccessException.class})
+
+
+    @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleAppException(Exception ex) {
+    public String handleBadRequest(Exception ex) {
+        return generateJsonErrorResponse(HttpStatus.BAD_REQUEST.value(), ex);
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleNotFound(Exception ex) {
+        return generateJsonErrorResponse(HttpStatus.NOT_FOUND.value(), ex);
+    }
+
+    private String generateJsonErrorResponse(int code, Exception ex) {
         return Json.createBuilderFactory(null).createObjectBuilder()
-                .add("code", HttpStatus.BAD_REQUEST.value())
+                .add("code", code)
                 .add("message", ex.getMessage()).build().toString();
     }
 
