@@ -2,7 +2,9 @@ package at.geyerritter.dezsys07;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,20 +52,23 @@ public class DataRecordRestController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleBadRequest(Exception ex) {
-        return generateJsonErrorResponse(HttpStatus.BAD_REQUEST.value(), ex);
+    public ResponseEntity<String> handleBadRequest(Exception ex) {
+        return generateJsonErrorResponse(HttpStatus.BAD_REQUEST, ex);
     }
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFound(Exception ex) {
-        return generateJsonErrorResponse(HttpStatus.NOT_FOUND.value(), ex);
+    public ResponseEntity<String> handleNotFound(Exception ex) {
+        return generateJsonErrorResponse(HttpStatus.NOT_FOUND, ex);
     }
 
-    private String generateJsonErrorResponse(int code, Exception ex) {
-        return Json.createBuilderFactory(null).createObjectBuilder()
-                .add("code", code)
-                .add("message", ex.getMessage()).build().toString();
+    private ResponseEntity<String> generateJsonErrorResponse(HttpStatus status, Exception ex) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>(Json.createBuilderFactory(null).createObjectBuilder()
+                .add("code", status.value())
+                .add("message", ex.getMessage()).build().toString(), headers, status);
+
     }
 
 
