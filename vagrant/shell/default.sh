@@ -20,9 +20,8 @@ apt-get install -y p7zip p7zip-full
 # Unpacking data with 1 million records
 7z e /home/vagrant/mongo-dump/data.7z -aoa
 
-# import test data records (10)
-mongo --eval "db.dataRecord.drop()"
-mongoimport --db testdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/testdata.json --jsonArray
-# TODO import 1.000.000 data records into different db
+# import 1 million data records
+mongo testdb --eval "db.dataRecord.drop()"
+mongoimport --db testdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/data.json --jsonArray
 
 echo "### END default.sh ###"
