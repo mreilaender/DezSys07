@@ -12,8 +12,7 @@ import javax.json.Json;
 import java.util.List;
 
 /**
- * This class represents a RESTful API to create/read/update/delete a data record object.
- *
+ * This class represents a RESTful API to create/read/update/delete a data record object. <br />
  *
  * @author Stefan Geyer
  * @author Mathias Ritter
@@ -35,7 +34,7 @@ public class DataRecordRestController {
      * @param name Filter for field name
      * @return List including retrieved data records + status 200 OK
      */
-    @RequestMapping(value = "/datarecords", method = RequestMethod.GET)
+    @RequestMapping(value = "/datarecords", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<DataRecordDTO>> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
         if (name.length() == 0)
             return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
@@ -51,7 +50,7 @@ public class DataRecordRestController {
      * @param dataRecordDTO The data record object that will be created
      * @return The created data record + status 201 CREATED
      */
-    @RequestMapping(value="/datarecords", method = RequestMethod.POST)
+    @RequestMapping(value="/datarecords", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<DataRecordDTO> createDataRecord(@RequestBody DataRecordDTO dataRecordDTO) {
 
         // the id will be set when inserting into the database, so we set it to null now
@@ -69,7 +68,7 @@ public class DataRecordRestController {
      * @param id The id of the data record that will be retrieved
      * @return the retrieved object + status 200 OK or an error + status 404 NOT FOUND
      */
-    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<DataRecordDTO> findDataRecord(@PathVariable String id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
@@ -84,7 +83,7 @@ public class DataRecordRestController {
      * @param newDataRecord The data record containing the new information
      * @return the updated object + status 200 OK or an error + status 404 NOT FOUND
      */
-    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity<DataRecordDTO> updateDataRecord(@PathVariable String id, @RequestBody DataRecordDTO newDataRecord) {
         DataRecordDTO dataRecord = service.findById(id);
         dataRecord.setName(newDataRecord.getName());
