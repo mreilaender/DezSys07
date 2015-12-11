@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.controller;
+package at.geyerritter.dezsys07;
 
 import at.geyerritter.dezsys07.DataRecordDTO;
 import at.geyerritter.dezsys07.MongoDBDataRecordService;
@@ -32,6 +32,18 @@ public class DataRecordRestController {
         } catch (EmptyResultDataAccessException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+
+    @RequestMapping(value="/datarecords", method = RequestMethod.POST)
+    public ResponseEntity<DataRecordDTO> createDataRecord(@RequestBody DataRecordDTO dataRecordDTO) {
+
+        // the id will be set when inserting into the database, so we set it to null now
+        dataRecordDTO.setId(null);
+
+        service.create(dataRecordDTO);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
