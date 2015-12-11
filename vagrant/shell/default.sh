@@ -13,7 +13,7 @@ apt-get install -y mongodb-org p7zip p7zip-full
 sed "s/127.0.0.1/0.0.0.0/" -i /etc/mongod.conf
 service mongod restart
 
-7z e /home/vagrant/mongo-dump/data.7z
+7z e /home/vagrant/mongo-dump/data.7z -aoa
 
 # import test data records (10)
 mongoimport --db testdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/testdata.json --jsonArray
