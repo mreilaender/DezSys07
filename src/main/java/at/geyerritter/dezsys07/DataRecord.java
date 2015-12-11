@@ -1,11 +1,8 @@
 package at.geyerritter.dezsys07;
 
 import org.springframework.data.annotation.Id;
-import org.thymeleaf.util.Validate;
 
-import static org.thymeleaf.util.Validate.isTrue;
-import static org.thymeleaf.util.Validate.notEmpty;
-import static org.thymeleaf.util.Validate.notNull;
+import static org.thymeleaf.util.Validate.*;
 
 /**
  * This class contains the entity data.
@@ -24,7 +21,8 @@ public class DataRecord {
     private String name;
     private String description;
 
-    public DataRecord() {}
+    public DataRecord() {
+    }
 
     private DataRecord(Builder builder) {
         this.name = builder.name;
@@ -48,7 +46,8 @@ public class DataRecord {
         private String name;
         private String description;
 
-        private Builder() {}
+        private Builder() {
+        }
 
         public Builder name(String name) {
             this.name = name;
