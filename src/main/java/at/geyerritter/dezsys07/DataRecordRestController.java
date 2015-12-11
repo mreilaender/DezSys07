@@ -37,9 +37,9 @@ public class DataRecordRestController {
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<DataRecordDTO>> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
         if (name.length() == 0)
-            return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(service.findTop100(), HttpStatus.OK);
         else
-            return new ResponseEntity<>(service.findByNameContainingIgnoreCase(name), HttpStatus.OK);
+            return new ResponseEntity<>(service.findTop100ByNameContainingIgnoreCase(name), HttpStatus.OK);
     }
 
     /**

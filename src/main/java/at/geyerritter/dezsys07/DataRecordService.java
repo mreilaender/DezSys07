@@ -1,6 +1,7 @@
 package at.geyerritter.dezsys07;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -33,19 +34,12 @@ public interface DataRecordService {
     DataRecordDTO findById(String id) throws EmptyResultDataAccessException;
 
     /**
-     * Finds every DataRecord that contains the given name
+     * Finds every DataRecord that contains the given name up to a maximum of 100
      *
      * @param name The name that will be searched
      * @return A list of all DataRecords containing the given name
      */
-    List<DataRecordDTO> findByNameContainingIgnoreCase(String name);
-
-    /**
-     * Returns every object found in the database
-     *
-     * @return A list of the found DataRecords
-     */
-    List<DataRecordDTO> findAll();
+    List<DataRecordDTO> findTop100ByNameContainingIgnoreCase(String name);
 
     /**
      * Updates a existing DataRecord
@@ -54,5 +48,7 @@ public interface DataRecordService {
      * @return The DTO of the updated DataRecord
      */
     DataRecordDTO update(DataRecordDTO recordDTO);
+
+    List<DataRecordDTO> findTop100();
 
 }
