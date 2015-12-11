@@ -16,9 +16,12 @@ public class DataRecordDTO {
     private String description;
 
     public DataRecordDTO(String id, String name, String description) {
-        this.id = id;
         this.name = name;
         this.description = description;
+        this.id = id;
+    }
+
+    public DataRecordDTO() {
     }
 
     public String getId() {
