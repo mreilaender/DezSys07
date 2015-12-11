@@ -8,6 +8,15 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * This class accesses the database.
+ * The Methods will return DTOs in order to cut the connection
+ * of the model classes to the database.
+ *
+ * @version 20151211.1
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ */
 @Service
 public class MongoDBDataRecordService implements DataRecordService {
 
@@ -66,6 +75,12 @@ public class MongoDBDataRecordService implements DataRecordService {
         return convertToDTO(updated);
     }
 
+    /**
+     * Converts a DataRecord to a related DTO
+     *
+     * @param record The record that will be converted
+     * @return The converted DTO
+     */
     private DataRecordDTO convertToDTO(DataRecord record) {
         return new DataRecordDTO(record.getId(), record.getName(), record.getDescription());
     }
