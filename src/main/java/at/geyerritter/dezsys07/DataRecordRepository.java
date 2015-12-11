@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- *
  * @author Stefan Geyer
  * @version 20151205.1
  */
