@@ -11,8 +11,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  # puppet Configuration for all VMs
-
   # box to use
   config.vm.box = "debian/jessie64"
 
@@ -30,26 +28,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell" do |shell|
     shell.path = "shell/default.sh"
   end
-
-  # definition for Puppet to use the configuration for all VMs in 'manifest/default_all.pp'
-  # puppet needs also moduls to execute the configuration
-  #config.vm.provision "puppet" do |puppet|
-  # global configuration directory
-  # puppet.manifests_path = "manifests"
-  # main configuration file
-  # puppet.manifest_file  = "default.pp"
-  # puppet modules path
-  # puppet.module_path    = "modules"
-  # DEBUG
-  # puppet.options << '--verbose'
-  # puppet.options << '--debug'
-  #end
-
-  # DEBUG
-  # so virtualbox shows the gui
-  # config.vm.provider "virtualbox" do |vbox, override|
-  #   vbox.gui = true
-  # end
 
 end
 

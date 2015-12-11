@@ -17,5 +17,6 @@ public interface DataRecordRepository extends MongoRepository<DataRecord, String
      * @param name The name of the {@link DataRecord}
      * @return The DataRecord if found, null otherwise
      */
-    List<DataRecord> findByNameContainingIgnoreCase(@Param("name") String name);
+    List<DataRecord> findTop100ByNameContainingIgnoreCase(@Param("name") String name);
+
 }

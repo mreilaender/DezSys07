@@ -2,6 +2,8 @@ package at.geyerritter.dezsys07;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,14 +56,14 @@ public class MongoDBDataRecordService implements DataRecordService {
     }
 
     @Override
-    public List<DataRecordDTO> findByNameContainingIgnoreCase(String name) {
-        List<DataRecord> records = repository.findByNameContainingIgnoreCase(name);
+    public List<DataRecordDTO> findTop100ByNameContainingIgnoreCase(String name) {
+        List<DataRecord> records = repository.findTop100ByNameContainingIgnoreCase(name);
         return records.stream().map(this::convertToDTO).collect(toList());
     }
 
     @Override
-    public List<DataRecordDTO> findAll() {
-        List<DataRecord> records = repository.findAll();
+    public List<DataRecordDTO> findTop100() {
+        List<DataRecord> records = repository.findAll(new PageRequest(0, 10)).getContent();
 
         return records.stream().map(this::convertToDTO).collect(toList());
     }
