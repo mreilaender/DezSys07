@@ -63,7 +63,7 @@ public class MongoDBDataRecordService implements DataRecordService {
 
     @Override
     public List<DataRecordDTO> findTop100() {
-        List<DataRecord> records = repository.findAll(new PageRequest(0, 10)).getContent();
+        List<DataRecord> records = repository.findAll(new PageRequest(0, 100)).getContent();
 
         return records.stream().map(this::convertToDTO).collect(toList());
     }
