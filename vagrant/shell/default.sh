@@ -11,7 +11,9 @@ apt-get dist-upgrade -y
 apt-get install -y mongodb-org p7zip p7zip-full
 
 sed "s/127.0.0.1/0.0.0.0/" -i /etc/mongod.conf
-service mongod restart
+
+service mongod stop
+service mongod start
 
 7z e /home/vagrant/mongo-dump/data.7z -aoa
 
