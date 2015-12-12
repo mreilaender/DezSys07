@@ -28,7 +28,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("DataRecordsPort");
         wsdl11Definition.setLocationUri("/datarecords/search");
-        wsdl11Definition.setTargetNamespace("http://at/geyerritter/dezsys07/soa");
+        wsdl11Definition.setTargetNamespace(DataRecordEndpoint.NAMESPACE_URI);
         wsdl11Definition.setSchema(dataRecordsSchema);
         return wsdl11Definition;
     }
