@@ -5,5 +5,5 @@
 // Generiert: 2015.12.12 um 03:43:07 PM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://at/geyerritter/dezsys07/soa", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package at.geyerritter.dezsys07.soa;
+//@javax.xml.bind.annotation.XmlSchema(namespace = "http://at/geyerritter/dezsys07/soa", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+//package at.geyerritter.dezsys07.soa;
