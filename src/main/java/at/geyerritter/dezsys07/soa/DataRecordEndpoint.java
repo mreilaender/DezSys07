@@ -9,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class DataRecordEndpoint {
-    private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
+    private static final String NAMESPACE_URI = "http://at/geyerritter/dezsys07/soa";
 
     private DataRecordRepository dataRecordRepository;
 
@@ -18,7 +18,7 @@ public class DataRecordEndpoint {
         this.dataRecordRepository = dataRecordRepository;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getDataRecordRequest")
     @ResponsePayload
     public GetDataRecordResponse getDataRecord(@RequestPayload GetDataRecordRequest request) {
         GetDataRecordResponse response = new GetDataRecordResponse();
