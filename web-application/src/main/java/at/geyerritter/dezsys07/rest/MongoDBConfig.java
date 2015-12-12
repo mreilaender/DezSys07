@@ -16,7 +16,7 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "testdb";
+        return "webappdb";
     }
 
 

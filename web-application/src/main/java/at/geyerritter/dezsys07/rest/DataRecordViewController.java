@@ -27,6 +27,11 @@ public class DataRecordViewController {
     @Autowired
     private DataRecordRestController restController;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/html")
+    public String redirectToDisplayDataRecords() {
+        return "redirect:datarecords";
+    }
+
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET, produces = "text/html")
     public String displayDataRecords(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
         List<DataRecordDTO> dataRecords = restController.findDataRecordsByName(name).getBody();

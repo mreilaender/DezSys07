@@ -21,34 +21,8 @@ apt-get install -y p7zip p7zip-full
 7z e /home/vagrant/mongo-dump/data.7z -o/home/vagrant/mongo-dump/ -aoa
 
 # import 1 million data records
-mongo testdb --eval "db.dataRecord.drop()"
-mongoimport --db testdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/data.json --jsonArray
-
-
-# install java 8 jdk
-echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
-echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-apt-get update
-
-echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-apt-get install -y oracle-java8-installer
-
-# install tomcat
-# download and extract
-mkdir -p ~/tmp
-cd ~/tmp
-wget http://www.us.apache.org/dist/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz
-tar xvzf ./apache-tomcat-8.0.30.tar.gz
-rm ./apache-tomcat-8.0.30.tar.gz
-mkdir -p /usr/share/tomcat8
-mv ~/tmp/apache-tomcat-8.0.30 /usr/share/tomcat8
-# create symbolic link
-rm -f /usr/share/tomcat
-ln -s /usr/share/tomcat8/apache-tomcat-8.0.30 /usr/share/tomcat
-
-# start tomcat
-/usr/share/tomcat/bin/startup.sh
+mongo webappdb --eval "db.dataRecord.drop()"
+mongoimport --db webappdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/data.json --jsonArray
 
 
 echo "### END default.sh ###"
