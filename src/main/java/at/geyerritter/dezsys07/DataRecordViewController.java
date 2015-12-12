@@ -3,6 +3,7 @@ package at.geyerritter.dezsys07;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,18 @@ public class DataRecordViewController {
         return "datarecords";
     }
 
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "text/html")
+    public String displayDataRecord(@PathVariable String id, Model model) {
+        DataRecordDTO dataRecord = restController.findDataRecord(id).getBody();
+        model.addAttribute("dataRecord", dataRecord);
 
+        // IntelliJ bug workaround (see class comment)
+        if (false) {
+            WebContext context = new org.thymeleaf.context.WebContext(null, null, null);
+            context.setVariable("dataRecord", dataRecord);
+        }
+
+        return "edit";
+    }
 
 }

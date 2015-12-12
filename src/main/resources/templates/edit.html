@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Data Records</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<div id = "alert_placeholder"></div>
+
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" th:value="${dataRecord.name}" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" th:text="${dataRecord.description}"> </textarea>
+    </div>
+
+    <button class="btn btn-default">Submit</button>
+
+</form>
+
+<script type="text/javascript">
+
+    bootstrap_alert = function() {};
+    bootstrap_alert.success = function(message) {
+        $('#alert_placeholder').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+message+'</div>');
+    };
+    bootstrap_alert.error = function(message) {
+        $('#alert_placeholder').html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+message+'</div>');
+    };
+
+
+    $('form').submit(function(e) {
+
+        e.preventDefault();
+
+        var data = {
+            name: $("#name").val(),
+            description: $("#description").val()
+        };
+
+        $.ajax({
+            url: $(location).attr('href'),
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            processData: false,
+            type: 'PUT',
+            success: function (data) {
+                bootstrap_alert.success('Data updated successfully!');
+            },
+            error: function (data) {
+                bootstrap_alert.error('Data not updated: An error occured!');
+            }
+        });
+    });
+
+
+
+</script>
 
 </body>
 </html>

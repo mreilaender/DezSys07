@@ -73,6 +73,7 @@ public class MongoDBDataRecordService implements DataRecordService {
         DataRecord updated = repository.findOne(recordDTO.getId());
         updated.setName(recordDTO.getName());
         updated.setDescription(recordDTO.getDescription());
+        repository.save(updated);
 
         return convertToDTO(updated);
     }
