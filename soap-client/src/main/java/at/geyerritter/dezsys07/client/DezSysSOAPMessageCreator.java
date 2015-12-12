@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.soa.client;
+package at.geyerritter.dezsys07.client;
 
 import javax.xml.soap.*;
 
@@ -15,8 +15,7 @@ public class DezSysSOAPMessageCreator implements SOAPMessageCreator {
     /**
      * The following request will be created: <br>
      * <p>
-     * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-     * xmlns:gs="http://at/geyerritter/dezsys07/soa">
+     * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gs="http://at/geyerritter/dezsys07/soa">
      * <soapenv:Header/>
      * <soapenv:Body>
      * <gs:getDataRecordRequest>

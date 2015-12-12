@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.soa.client;
+package at.geyerritter.dezsys07.client;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
