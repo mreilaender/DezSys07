@@ -12,10 +12,6 @@ public class SOAPConnector {
     private SOAPMessageCreator messageCreator;
 
     public SOAPConnector(SOAPMessageCreator messageCreator, String webServiceURL) {
-        // Attributes cannot be null
-//        Assert.notNull(messageCreator);
-//        Assert.notNull(webServiceURL);
-
         this.messageCreator = messageCreator;
         this.webServiceURL = webServiceURL;
     }
