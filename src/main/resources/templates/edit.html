@@ -32,6 +32,14 @@
 
 <script type="text/javascript">
 
+    window.onpageshow = function(evt) {
+        // If persisted then it is in the page cache, force a reload of the page.
+        if (evt.persisted) {
+            document.body.style.display = "none";
+            location.reload();
+        }
+    };
+
     $('form').submit(function(e) {
 
         e.preventDefault();
@@ -51,15 +59,10 @@
                 bootstrap_alert.success('Data updated successfully!');
             },
             error: function (data) {
-                bootstrap_alert.error('Data not updated: An error occurred!');
+                bootstrap_alert.error('Data not updated: ' + data.responseJSON.message);
             }
         });
     });
-
-    function back() {
-        var url = $(location).attr('href');
-        window.location.href = url.substring(0, url.lastIndexOf("/"));
-    }
 
 
 

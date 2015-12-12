@@ -38,7 +38,7 @@ public class DataRecordViewController {
             context.setVariable("dataRecords", dataRecords);
         }
 
-        return "datarecords";
+        return "overview";
     }
 
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "text/html")

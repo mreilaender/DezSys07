@@ -40,6 +40,7 @@ public class DataRecord {
     private DataRecord(Builder builder) {
         this.name = builder.name;
         this.description = builder.description;
+        this.id = builder.id;
     }
 
     public static Builder getBuilder() {
@@ -58,8 +59,14 @@ public class DataRecord {
 
         private String name;
         private String description;
+        private String id;
 
         private Builder() {
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
         }
 
         public Builder name(String name) {
