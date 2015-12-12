@@ -1,6 +1,4 @@
-package at.geyerritter.dezsys07.soa.client;
-
-import org.springframework.util.Assert;
+package at.geyerritter.dezsys07.client;
 
 import javax.xml.soap.SOAPConnection;
 import javax.xml.soap.SOAPConnectionFactory;
@@ -15,8 +13,8 @@ public class SOAPConnector {
 
     public SOAPConnector(SOAPMessageCreator messageCreator, String webServiceURL) {
         // Attributes cannot be null
-        Assert.notNull(messageCreator);
-        Assert.notNull(webServiceURL);
+//        Assert.notNull(messageCreator);
+//        Assert.notNull(webServiceURL);
 
         this.messageCreator = messageCreator;
         this.webServiceURL = webServiceURL;

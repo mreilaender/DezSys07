@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.soa.client;
+package at.geyerritter.dezsys07.client;
 
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
