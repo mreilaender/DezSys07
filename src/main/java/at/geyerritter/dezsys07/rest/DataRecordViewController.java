@@ -41,6 +41,11 @@ public class DataRecordViewController {
         return "overview";
     }
 
+    @RequestMapping(value = "/datarecords/create", method = RequestMethod.GET, produces = "text/html")
+    public String displayCreateDataRecords() {
+        return "create";
+    }
+
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "text/html")
     public String displayDataRecord(@PathVariable String id, Model model) {
         DataRecordDTO dataRecord = restController.findDataRecord(id).getBody();

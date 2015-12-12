@@ -21,10 +21,14 @@
     <div class="row">
         <form class="form-inline" role="search" method="get">
             <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="Search" />
-                <button type="submit" class="btn btn-default">Submit</button>
+                <span th:switch="${param.name}">
+                    <span th:case="null"><input type="text" id="search" name="name" class="form-control" placeholder="Search" /></span>
+                    <span th:case="*"><input type="text" id="search" name="name" class="form-control" placeholder="Search" th:value="${param.name[0]}" /></span>
+                </span>
+                <button type="submit" class="btn btn-primary">search</button>
+                <input type="button" class="btn btn-default" value="reset" onclick="resetSearch()"/>
             </div>
-
+            <input type="button" class="btn btn-success pull-right" value="create new record" onclick="createRecord()"/>
         </form>
     </div>
 
@@ -40,8 +44,8 @@
                 <tr th:id="${dataRecord.id}">
                     <td th:text="${dataRecord.name}"></td>
                     <td th:text="${dataRecord.description}"></td>
-                    <td><input type="button" class="btn btn-default" value="edit" th:onclick="'edit_record(\'' + ${dataRecord.id} + '\');'"/></td>
-                    <td><input type="button" class="btn btn-danger" value="remove" th:onclick="'remove_record(\'' + ${dataRecord.id} + '\');'"/></td>
+                    <td><input type="button" class="btn btn-default" value="edit" th:onclick="'editRecord(\'' + ${dataRecord.id} + '\');'"/></td>
+                    <td><input type="button" class="btn btn-danger" value="remove" th:onclick="'removeRecord(\'' + ${dataRecord.id} + '\');'"/></td>
                 </tr>
             </th:block>
         </table>
@@ -59,21 +63,21 @@
         }
     };
 
-    function edit_record(id) {
-        var url = $(location).attr('href');
-        if (url.indexOf("?") != -1)
-            url = url.substr(0, url.lastIndexOf("?"));
-        window.location.href = url + "/" + id;
+    function resetSearch() {
+        window.location.href = "/datarecords";
     }
 
-    function remove_record(id) {
-        var url = $(location).attr('href');
-        if (url.indexOf("?") != -1)
-            url = url.substr(0, url.lastIndexOf("?"));
-        url = url + "/" + id;
+    function editRecord(id) {
+        window.location.href = "/datarecords/" + id;
+    }
 
+    function createRecord() {
+        window.location.href = "/datarecords/create";
+    }
+
+    function removeRecord(id) {
         $.ajax({
-            url: url,
+            url: "/datarecords/" + id,
             contentType: "application/json",
             processData: false,
             type: 'DELETE',
@@ -86,6 +90,8 @@
             }
         });
     }
+
+
 
 </script>
 
