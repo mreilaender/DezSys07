@@ -1,6 +1,6 @@
 package at.geyerritter.dezsys07.soa;
 
-import at.geyerritter.dezsys07.DataRecordRepository;
+import at.geyerritter.dezsys07.data.DataRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

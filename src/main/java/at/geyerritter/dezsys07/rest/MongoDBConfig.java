@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.rest;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;

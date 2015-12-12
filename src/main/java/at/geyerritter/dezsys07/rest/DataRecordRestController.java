@@ -1,5 +1,6 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.rest;
 
+import at.geyerritter.dezsys07.data.DataRecordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;

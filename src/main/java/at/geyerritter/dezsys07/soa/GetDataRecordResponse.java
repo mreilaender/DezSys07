@@ -8,7 +8,7 @@
 
 package at.geyerritter.dezsys07.soa;
 
-import at.geyerritter.dezsys07.DataRecord;
+import at.geyerritter.dezsys07.data.DataRecord;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.data;
 
 import org.springframework.data.annotation.Id;
 
@@ -54,7 +54,7 @@ public class DataRecord {
                 '}';
     }
 
-    static class Builder {
+    public static class Builder {
 
         private String name;
         private String description;

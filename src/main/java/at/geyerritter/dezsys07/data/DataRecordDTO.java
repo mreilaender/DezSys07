@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.data;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
