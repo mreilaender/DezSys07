@@ -2,6 +2,11 @@ package at.geyerritter.dezsys07;
 
 import org.springframework.data.annotation.Id;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 import static org.thymeleaf.util.Validate.*;
 
 /**
@@ -10,15 +15,23 @@ import static org.thymeleaf.util.Validate.*;
  * @author Stefan Geyer
  * @version 20151205.1
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "datarecord", propOrder = {
+        "id",
+        "name",
+        "description"
+})
 public class DataRecord {
 
     static final int MAX_LENGTH_NAME = 100;
     static final int MAX_LENGTH_DESCRIPTION = 500;
 
     @Id
+    @XmlElement(required = true)
     private String id;
-
+    @XmlElement(required = true)
     private String name;
+    @XmlElement(required = true)
     private String description;
 
     public DataRecord() {
