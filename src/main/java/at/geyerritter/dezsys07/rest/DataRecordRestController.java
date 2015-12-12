@@ -93,6 +93,12 @@ public class DataRecordRestController {
         return new ResponseEntity<>(service.update(dataRecord), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<DataRecordDTO> updateDataRecord(@PathVariable String id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     /**
      * This method is called if an exception occurs that should lead to a 400 BAD REQUEST error.
      *
