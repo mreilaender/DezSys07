@@ -36,7 +36,7 @@
                 <tr>
                     <td th:text="${dataRecord.name}"></td>
                     <td th:text="${dataRecord.description}"></td>
-                    <td><input type="button" value="edit" th:onclick="'redirect(\'' + ${dataRecord.id} + '\');'"/></td>
+                    <td><input type="button" class="btn btn-default" value="edit" th:onclick="'redirect(\'' + ${dataRecord.id} + '\');'"/></td>
                 </tr>
             </th:block>
         </table>
