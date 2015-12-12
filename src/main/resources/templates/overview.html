@@ -22,8 +22,10 @@
         <form class="form-inline" role="search" method="get">
             <div class="form-group">
                 <span th:switch="${param.name}">
-                    <span th:case="null"><input type="text" id="search" name="name" class="form-control" placeholder="Search" /></span>
-                    <span th:case="*"><input type="text" id="search" name="name" class="form-control" placeholder="Search" th:value="${param.name[0]}" /></span>
+                    <span th:case="null"><!--suppress XmlDuplicatedId -->
+                        <input type="text" id="search" name="name" class="form-control" placeholder="Search" /></span>
+                    <span th:case="*"><!--suppress XmlDuplicatedId -->
+                        <input type="text" id="search" name="name" class="form-control" placeholder="Search" th:value="${param.name[0]}" /></span>
                 </span>
                 <button type="submit" class="btn btn-primary">search</button>
                 <input type="button" class="btn btn-default" value="reset" onclick="resetSearch()"/>
