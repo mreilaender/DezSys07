@@ -5,12 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script th:src="@{/js/alerts.js}"></script>
 </head>
 <body>
 
 <div class="page-header">
     <h1>Datarecords <small>use search bar for filtering</small></h1>
 </div>
+
+<div id = "alert_placeholder"></div>
 
 <div class="container-fluid">
 
@@ -33,10 +37,11 @@
             </tr>
             </thead>
             <th:block th:each="dataRecord : ${dataRecords}">
-                <tr>
+                <tr th:id="${dataRecord.id}">
                     <td th:text="${dataRecord.name}"></td>
                     <td th:text="${dataRecord.description}"></td>
                     <td><input type="button" class="btn btn-default" value="edit" th:onclick="'redirect(\'' + ${dataRecord.id} + '\');'"/></td>
+                    <td><input type="button" class="btn btn-danger" value="remove" th:onclick="'remove_record(\'' + ${dataRecord.id} + '\');'"/></td>
                 </tr>
             </th:block>
         </table>
@@ -45,8 +50,41 @@
 </div>
 
 <script type="text/javascript">
+
+    window.onpageshow = function(evt) {
+        // If persisted then it is in the page cache, force a reload of the page.
+        if (evt.persisted) {
+            document.body.style.display = "none";
+            location.reload();
+        }
+    };
+
     function redirect(id) {
-        window.location.href = $(location).attr('href') + "/" + id;
+        var url = $(location).attr('href');
+        if (url.indexOf("?") != -1)
+            url = url.substr(0, url.lastIndexOf("?"));
+        window.location.href = url + "/" + id;
+    }
+
+    function remove_record(id) {
+        var url = $(location).attr('href');
+        if (url.indexOf("?") != -1)
+            url = url.substr(0, url.lastIndexOf("?"));
+        url = url + "/" + id;
+
+        $.ajax({
+            url: url,
+            contentType: "application/json",
+            processData: false,
+            type: 'DELETE',
+            success: function (data) {
+                bootstrap_alert.success('Deleted data successfully!');
+                $("#" + id).hide();
+            },
+            error: function (data) {
+                bootstrap_alert.error('Data not deleted: An error occurred!');
+            }
+        });
     }
 </script>
 

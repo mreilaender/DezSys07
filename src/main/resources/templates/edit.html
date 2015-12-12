@@ -22,9 +22,13 @@
         <textarea class="form-control" id="description" th:text="${dataRecord.description}"> </textarea>
     </div>
 
-    <button class="btn btn-default">Submit</button>
+    <button class="btn btn-success">Submit</button>
 
 </form>
+
+<br />
+
+<button class="btn btn-default" onclick="history.go(-1);">Back</button>
 
 <script type="text/javascript">
 
@@ -51,6 +55,11 @@
             }
         });
     });
+
+    function back() {
+        var url = $(location).attr('href');
+        window.location.href = url.substring(0, url.lastIndexOf("/"));
+    }
 
 
 
