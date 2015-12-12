@@ -11,6 +11,8 @@
 
     <artifactId>dezsys07-soap-client</artifactId>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>commons-cli</groupId>

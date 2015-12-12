@@ -10,14 +10,18 @@ public class CLIProcessor {
         Options options = new Options();
 
         Option name = Option.builder().argName("n").longOpt("name")
-                .desc("The name that is going to be looked up").required()
-                .build();
+                .desc("The name that is going to be looked up").required().build();
 
         Option host = Option.builder().argName("h").longOpt("host")
-                .desc("").build();
+                .desc("The ip or domain of the application server").build();
+
+        Option port = Option.builder().argName("p").longOpt("port")
+                .desc("The port where the application server is running on").build();
 
         options.addOption(name);
+        options.addOption(host);
+        options.addOption(port);
 
-        return null;
+        return options;
     }
 }
