@@ -5,7 +5,7 @@ import javax.xml.soap.SOAPMessage;
 public class Client {
     public static void main(String args[]) {
         try {
-            SOAPMessageCreator messageCreator = new DezSysSOAPMessageCreator("Cantu");
+            SOAPMessageCreator messageCreator = new DezSysSOAPMessageCreator("Eric");
             SOAPConnector connector = new SOAPConnector(messageCreator, "http://127.0.0.1:8080/datarecords/search");
 
             SOAPMessage message = connector.call();
