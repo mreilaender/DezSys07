@@ -40,7 +40,7 @@
                 <tr th:id="${dataRecord.id}">
                     <td th:text="${dataRecord.name}"></td>
                     <td th:text="${dataRecord.description}"></td>
-                    <td><input type="button" class="btn btn-default" value="edit" th:onclick="'redirect(\'' + ${dataRecord.id} + '\');'"/></td>
+                    <td><input type="button" class="btn btn-default" value="edit" th:onclick="'edit_record(\'' + ${dataRecord.id} + '\');'"/></td>
                     <td><input type="button" class="btn btn-danger" value="remove" th:onclick="'remove_record(\'' + ${dataRecord.id} + '\');'"/></td>
                 </tr>
             </th:block>
@@ -59,7 +59,7 @@
         }
     };
 
-    function redirect(id) {
+    function edit_record(id) {
         var url = $(location).attr('href');
         if (url.indexOf("?") != -1)
             url = url.substr(0, url.lastIndexOf("?"));
@@ -82,10 +82,11 @@
                 $("#" + id).hide();
             },
             error: function (data) {
-                bootstrap_alert.error('Data not deleted: An error occurred!');
+                bootstrap_alert.error('Data not deleted: '  + data.responseJSON.message);
             }
         });
     }
+
 </script>
 
 

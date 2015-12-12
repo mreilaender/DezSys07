@@ -72,11 +72,14 @@ public class MongoDBDataRecordService implements DataRecordService {
 
     @Override
     public DataRecordDTO update(DataRecordDTO recordDTO) {
-        DataRecord updated = repository.findOne(recordDTO.getId());
-        updated.setName(recordDTO.getName());
-        updated.setDescription(recordDTO.getDescription());
-        repository.save(updated);
 
+        DataRecord updated = DataRecord.getBuilder()
+                .name(recordDTO.getName())
+                .description(recordDTO.getDescription())
+                .id(recordDTO.getId())
+                .build();
+
+        repository.save(updated);
         return convertToDTO(updated);
     }
 
