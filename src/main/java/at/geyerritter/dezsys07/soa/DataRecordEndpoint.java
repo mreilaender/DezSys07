@@ -22,7 +22,7 @@ public class DataRecordEndpoint {
     @ResponsePayload
     public GetDataRecordResponse getDataRecord(@RequestPayload GetDataRecordRequest request) {
         GetDataRecordResponse response = new GetDataRecordResponse();
-        response.setDataRecord(dataRecordRepository.findOne(request.getName()));
+        response.setDataRecord(dataRecordRepository.findTop100ByNameContainingIgnoreCase(request.getName()));
 
         return response;
     }
