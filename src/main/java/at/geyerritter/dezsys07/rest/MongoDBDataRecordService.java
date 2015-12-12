@@ -1,9 +1,11 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.rest;
 
+import at.geyerritter.dezsys07.data.DataRecord;
+import at.geyerritter.dezsys07.data.DataRecordDTO;
+import at.geyerritter.dezsys07.data.DataRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

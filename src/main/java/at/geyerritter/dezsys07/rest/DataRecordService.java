@@ -1,7 +1,7 @@
-package at.geyerritter.dezsys07;
+package at.geyerritter.dezsys07.rest;
 
+import at.geyerritter.dezsys07.data.DataRecordDTO;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
