@@ -18,7 +18,7 @@ service mongod start
 apt-get install -y p7zip p7zip-full
 
 # Unpacking data with 1 million records
-7z e /home/vagrant/mongo-dump/data.7z -aoa
+7z e /home/vagrant/mongo-dump/data.7z -o/home/vagrant/mongo-dump/ -aoa
 
 # import 1 million data records
 mongo testdb --eval "db.dataRecord.drop()"
