@@ -24,7 +24,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <path>/dezsys07</path>
+                    <path>/</path>
                     <update>true</update>
                     <url>http://192.168.10.200:8080/manager/text</url>
                     <username>tomcat</username>
