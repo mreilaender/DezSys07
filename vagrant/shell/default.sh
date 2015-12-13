@@ -20,11 +20,6 @@ apt-get install -y p7zip p7zip-full
 # Unpacking data with 1 million records
 7z e /home/vagrant/mongo-dump/data.7z -o/home/vagrant/mongo-dump/ -aoa
 
-# import 1 million data records
-mongo webappdb --eval "db.dataRecord.drop()"
-mongoimport --db webappdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/data.json --jsonArray
-
-
 # install java 8 jdk
 echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
 echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
@@ -54,5 +49,9 @@ sed -i "s/version=\"1.0\">/version=\"1.0\">\n<user username=\"tomcat\" password=
 
 # start tomcat
 /usr/share/tomcat/bin/startup.sh
+
+# import 1 million data records
+mongo webappdb --eval "db.dataRecord.drop()"
+mongoimport --db webappdb --collection dataRecord --type json --file /home/vagrant/mongo-dump/data.json --jsonArray
 
 echo "### END default.sh ###"
