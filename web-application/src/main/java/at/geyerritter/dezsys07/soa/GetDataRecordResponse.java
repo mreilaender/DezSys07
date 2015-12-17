@@ -31,6 +31,8 @@ public class GetDataRecordResponse {
     /**
      * Returns the value of the dataRecord field.
      * If the field was not initialized before, a new ArrayList will be assigned.
+     *
+     * @return The DataRecords that match the give name
      */
     public List<DataRecord> getDataRecord() {
         if (dataRecord == null) {
