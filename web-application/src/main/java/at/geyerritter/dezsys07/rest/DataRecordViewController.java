@@ -12,13 +12,19 @@ import org.thymeleaf.context.WebContext;
 import java.util.List;
 
 /**
- *
- *
+ * This controller handles HTTP GET requests of the browser (with accept text/html header).<br />
+ * Therefore the created thymeleaf templates are filled with data of the REST controller and then returned as a HTML document.
+ * In order to access the REST controller, an attribute is injected via the @Autowired annotation.<br />
+ * <br />
  * Unfortunately, there is a bug in IntelliJ IDEA so context variables do not get resolved in thymeleaf templates <br />
  * It will be fixed in version 15.1 (release on March 1st, 2016) <br />
  * For more info visit https://youtrack.jetbrains.com/issue/IDEA-132738 <br />
  * As a workaround you have to add all attributes again in a new WebContext (see if statements in the methods of this class)
  *
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ *
+ * @version 20151217.1
  */
 @Controller
 public class DataRecordViewController {
@@ -26,6 +32,12 @@ public class DataRecordViewController {
     @Autowired
     private DataRecordRestController restController;
 
+    /**
+     * Handles browser GET request (with accept text/html header) to the path "/". <br />
+     * The user gets redirected to the url "/datarecords"
+     *
+     * @return redirect to "/datarecords"
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/html")
     public String redirectToDisplayDataRecords() {
         return "redirect:datarecords";

@@ -93,6 +93,14 @@ public class DataRecordRestController {
         return new ResponseEntity<>(service.update(dataRecord), HttpStatus.OK);
     }
 
+    /**
+     * Handles DELETE requests of the URL "/datarecords/{id}"<br />
+     * This method is used to remove an existing data record specified by the id. The id is part of the URL.
+     * If the id does not exist an error is returned.
+     *
+     * @param id The id of the data record that will be removed.
+     * @return status 200 OK if the data record has been deleted successfully
+     */
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.DELETE, produces = "application/json")
     public ResponseEntity<DataRecord> updateDataRecord(@PathVariable String id) {
         service.delete(id);
