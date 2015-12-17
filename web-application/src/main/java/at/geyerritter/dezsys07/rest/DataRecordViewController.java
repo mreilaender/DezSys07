@@ -12,13 +12,13 @@ import org.thymeleaf.context.WebContext;
 import java.util.List;
 
 /**
- * This controller handles HTTP GET requests of the browser (with accept text/html header).<br />
+ * This controller handles HTTP GET requests of the browser (with accept text/html header).<br>
  * Therefore the created thymeleaf templates are filled with data of the REST controller and then returned as a HTML document.
- * In order to access the REST controller, an attribute is injected via the @Autowired annotation.<br />
- * <br />
- * Unfortunately, there is a bug in IntelliJ IDEA so context variables do not get resolved in thymeleaf templates <br />
- * It will be fixed in version 15.1 (release on March 1st, 2016) <br />
- * For more info visit https://youtrack.jetbrains.com/issue/IDEA-132738 <br />
+ * In order to access the REST controller, an attribute is injected via the @Autowired annotation.<br>
+ * <br>
+ * Unfortunately, there is a bug in IntelliJ IDEA so context variables do not get resolved in thymeleaf templates <br>
+ * It will be fixed in version 15.1 (release on March 1st, 2016) <br>
+ * For more info visit https://youtrack.jetbrains.com/issue/IDEA-132738 <br>
  * As a workaround you have to add all attributes again in a new WebContext (see if statements in the methods of this class)
  *
  * @author Stefan Geyer
@@ -33,7 +33,7 @@ public class DataRecordViewController {
     private DataRecordRestController restController;
 
     /**
-     * Handles browser GET request (with accept text/html header) to the path "/". <br />
+     * Handles browser GET request (with accept text/html header) to the path "/". <br>
      * The user gets redirected to the url "/datarecords"
      *
      * @return redirect to "/datarecords"
@@ -44,10 +44,10 @@ public class DataRecordViewController {
     }
 
     /**
-     * Handles browser GET request (with accept text/html header) to the path "/datarecords". <br />
+     * Handles browser GET request (with accept text/html header) to the path "/datarecords". <br>
      * This page is used to show data records in a table. Therefore data records are retrieved
      * and additionally filtered by the given get parameter name.
-     * They are added as an attribute to the model, so they can be accessed by the thymeleaf templates. <br />
+     * They are added as an attribute to the model, so they can be accessed by the thymeleaf templates. <br>
      * The rendered "overview" template is returned by returning a string with the file name.
      *
      * @param name GET parameter name to filter the results
@@ -69,8 +69,8 @@ public class DataRecordViewController {
     }
 
     /**
-     * Handles browser GET request (with accept text/html header) to the path "/datarecords/create". <br />
-     * This page is used to show a form in order to create a new data record. <br />
+     * Handles browser GET request (with accept text/html header) to the path "/datarecords/create". <br>
+     * This page is used to show a form in order to create a new data record. <br>
      * The rendered "create" template is returned by returning a string with the file name.
      *
      * @return string with the filename of the template (gets rendered through the framework)
@@ -81,10 +81,10 @@ public class DataRecordViewController {
     }
 
     /**
-     * Handles browser GET request (with accept text/html header) to the path "/datarecords/{id}". <br />
+     * Handles browser GET request (with accept text/html header) to the path "/datarecords/{id}". <br>
      * This page is used to show a specific data record so it can be edited. Therefore the data record with the
      * id given in the URL is retrieved. It is then added as an attribute to the model so it can be accessed by the
-     * thymeleaf templates. <br />
+     * thymeleaf templates. <br>
      *
      * The rendered "edit" template is returned by returning a string with the file name.
      *

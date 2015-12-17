@@ -30,12 +30,18 @@ public class MongoDBDataRecordService implements DataRecordService {
         this.repository = repository;
     }
 
+    /**
+     * @see at.geyerritter.dezsys07.rest.DataRecordService#create(DataRecord)
+     */
     @Override
     public DataRecord create(DataRecord record) {
         record = repository.save(record);
         return record;
     }
 
+    /**
+     * @see at.geyerritter.dezsys07.rest.DataRecordService#delete(String)
+     */
     @Override
     public DataRecord delete(String id) {
         DataRecord deleted = repository.findOne(id);
@@ -43,6 +49,9 @@ public class MongoDBDataRecordService implements DataRecordService {
         return deleted;
     }
 
+    /**
+     * @see @see at.geyerritter.dezsys07.rest.DataRecordService#findById
+     */
     @Override
     public DataRecord findById(String id) throws EmptyResultDataAccessException {
         DataRecord found = repository.findOne(id);
@@ -51,16 +60,25 @@ public class MongoDBDataRecordService implements DataRecordService {
         return found;
     }
 
+    /**
+     * @see at.geyerritter.dezsys07.rest.DataRecordService#findTop100ByNameContainingIgnoreCase(String)
+     */
     @Override
     public List<DataRecord> findTop100ByNameContainingIgnoreCase(String name) {
         return repository.findTop100ByNameContainingIgnoreCase(name);
     }
 
+    /**
+     * @see at.geyerritter.dezsys07.rest.DataRecordService#findTop100()
+     */
     @Override
     public List<DataRecord> findTop100() {
         return repository.findAll(new PageRequest(0, 100)).getContent();
     }
 
+    /**
+     * @see at.geyerritter.dezsys07.rest.DataRecordService#update(DataRecord)
+     */
     @Override
     public DataRecord update(DataRecord recordDTO) {
 

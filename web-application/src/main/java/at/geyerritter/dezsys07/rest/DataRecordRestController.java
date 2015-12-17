@@ -13,7 +13,7 @@ import javax.json.Json;
 import java.util.List;
 
 /**
- * This class represents a RESTful API to create/read/update/delete a data record object. <br />
+ * This class represents a RESTful API to create/read/update/delete a data record object. <br>
  *
  * @author Stefan Geyer
  * @author Mathias Ritter
@@ -27,7 +27,7 @@ public class DataRecordRestController {
     private MongoDBDataRecordService service;
 
     /**
-     * Handles GET requests of the URL "/datarecords"<br />
+     * Handles GET requests of the URL "/datarecords"<br>
      * This method is used to retrieve data records.
      * The GET parameter name is used for filtering the result. If this parameter is not provided
      * all results are returned.
@@ -44,7 +44,7 @@ public class DataRecordRestController {
     }
 
     /**
-     * Handles POST requests of the URL "/datarecords"<br />
+     * Handles POST requests of the URL "/datarecords"<br>
      * This method is used to create a new data record. Therefore the datarecord object
      * needs to be specified in the request body.
      *
@@ -62,8 +62,8 @@ public class DataRecordRestController {
     }
 
     /**
-     * Handles GET requests of the URL "/datarecords/{id}"<br />
-     * This method is used to retrieve a data record specified by the id. The id is part of the URL.<br />
+     * Handles GET requests of the URL "/datarecords/{id}"<br>
+     * This method is used to retrieve a data record specified by the id. The id is part of the URL.<br>
      * If the id does not exist an error is returned.
      *
      * @param id The id of the data record that will be retrieved
@@ -75,9 +75,9 @@ public class DataRecordRestController {
     }
 
     /**
-     * Handles PUT requests of the URL "/datarecords/{id}"<br />
+     * Handles PUT requests of the URL "/datarecords/{id}"<br>
      * This method is used to update an existing data record specified by the id. The id is part of the URL.
-     * The new data record is part of the body. <br />
+     * The new data record is part of the body. <br>
      * If the id does not exist an error is returned.
      *
      * @param id The id of the data record that will be updated.
@@ -94,7 +94,7 @@ public class DataRecordRestController {
     }
 
     /**
-     * Handles DELETE requests of the URL "/datarecords/{id}"<br />
+     * Handles DELETE requests of the URL "/datarecords/{id}"<br>
      * This method is used to remove an existing data record specified by the id. The id is part of the URL.
      * If the id does not exist an error is returned.
      *

@@ -6,9 +6,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.web.servlet.view.RedirectView;
 
+/**
+ * This class is used to configure the mongo database connection.
+ *
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ * @version 20151217.1
+ */
 @Configuration
 public class MongoDBConfig extends AbstractMongoConfiguration {
 
+    /**
+     * @see org.springframework.data.mongodb.config.AbstractMongoConfiguration#mongo
+     */
     @Override
     public Mongo mongo() throws Exception {
         return new MongoClient("192.168.10.200", 27017);

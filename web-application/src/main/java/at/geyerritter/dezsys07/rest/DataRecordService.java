@@ -5,6 +5,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 
+/**
+ * The service uses a repository to create/read/update/delete data records.
+ *
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ * @version 20151217.1
+ */
 public interface DataRecordService {
 
     /**
@@ -29,7 +36,7 @@ public interface DataRecordService {
      *
      * @param id The id of the DataRecord
      * @return The DataRecord if found
-     * @throws EmptyResultDataAccessException
+     * @throws EmptyResultDataAccessException if the data record can not be found
      */
     DataRecord findById(String id) throws EmptyResultDataAccessException;
 

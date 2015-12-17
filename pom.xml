@@ -38,6 +38,25 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <reportOutputDirectory>${basedir}/target/classes</reportOutputDirectory>
+                    <destDir>documentation/javadoc</destDir>
+                    <show>public</show>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-javadoc</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <!-- add files and sourcecode to jar/war -->
