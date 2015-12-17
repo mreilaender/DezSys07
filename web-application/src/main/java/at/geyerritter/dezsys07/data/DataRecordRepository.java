@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * This class communicates with the Mongo Database. This class is marked as Spring repository.
+ *
  * @author Stefan Geyer
  * @author Mathias Ritter
  * @version 20151205.1
