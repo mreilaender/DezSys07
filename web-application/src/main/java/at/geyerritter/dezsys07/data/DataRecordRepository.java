@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * @author Stefan Geyer
+ * @author Mathias Ritter
  * @version 20151205.1
  */
 @Repository

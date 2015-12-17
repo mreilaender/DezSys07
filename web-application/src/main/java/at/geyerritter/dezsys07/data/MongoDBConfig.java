@@ -1,4 +1,4 @@
-package at.geyerritter.dezsys07.rest;
+package at.geyerritter.dezsys07.data;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -18,6 +18,5 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
     protected String getDatabaseName() {
         return "webappdb";
     }
-
 
 }

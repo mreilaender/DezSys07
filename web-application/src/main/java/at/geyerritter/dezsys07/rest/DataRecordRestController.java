@@ -1,6 +1,6 @@
 package at.geyerritter.dezsys07.rest;
 
-import at.geyerritter.dezsys07.data.DataRecordDTO;
+import at.geyerritter.dezsys07.data.DataRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -36,7 +36,7 @@ public class DataRecordRestController {
      * @return List including retrieved data records + status 200 OK
      */
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<List<DataRecordDTO>> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
+    public ResponseEntity<List<DataRecord>> findDataRecordsByName(@RequestParam(value = "name", defaultValue = "") String name) {
         if (name.length() == 0)
             return new ResponseEntity<>(service.findTop100(), HttpStatus.OK);
         else
@@ -48,17 +48,17 @@ public class DataRecordRestController {
      * This method is used to create a new data record. Therefore the datarecord object
      * needs to be specified in the request body.
      *
-     * @param dataRecordDTO The data record object that will be created
+     * @param dataRecord The data record object that will be created
      * @return The created data record + status 201 CREATED
      */
     @RequestMapping(value="/datarecords", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<DataRecordDTO> createDataRecord(@RequestBody DataRecordDTO dataRecordDTO) {
+    public ResponseEntity<DataRecord> createDataRecord(@RequestBody DataRecord dataRecord) {
 
         // the id will be set when inserting into the database, so we set it to null now
-        dataRecordDTO.setId(null);
+        dataRecord.setId(null);
 
-        service.create(dataRecordDTO);
-        return new ResponseEntity<>(dataRecordDTO, HttpStatus.CREATED);
+        service.create(dataRecord);
+        return new ResponseEntity<>(dataRecord, HttpStatus.CREATED);
     }
 
     /**
@@ -70,7 +70,7 @@ public class DataRecordRestController {
      * @return the retrieved object + status 200 OK or an error + status 404 NOT FOUND
      */
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<DataRecordDTO> findDataRecord(@PathVariable String id) {
+    public ResponseEntity<DataRecord> findDataRecord(@PathVariable String id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
@@ -85,8 +85,8 @@ public class DataRecordRestController {
      * @return the updated object + status 200 OK or an error + status 404 NOT FOUND
      */
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity<DataRecordDTO> updateDataRecord(@PathVariable String id, @RequestBody DataRecordDTO newDataRecord) {
-        DataRecordDTO dataRecord = service.findById(id);
+    public ResponseEntity<DataRecord> updateDataRecord(@PathVariable String id, @RequestBody DataRecord newDataRecord) {
+        DataRecord dataRecord = service.findById(id);
         dataRecord.setName(newDataRecord.getName());
         dataRecord.setDescription(newDataRecord.getDescription());
 
@@ -94,7 +94,7 @@ public class DataRecordRestController {
     }
 
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity<DataRecordDTO> updateDataRecord(@PathVariable String id) {
+    public ResponseEntity<DataRecord> updateDataRecord(@PathVariable String id) {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

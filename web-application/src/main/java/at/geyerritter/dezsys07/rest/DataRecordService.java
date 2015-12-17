@@ -1,6 +1,6 @@
 package at.geyerritter.dezsys07.rest;
 
-import at.geyerritter.dezsys07.data.DataRecordDTO;
+import at.geyerritter.dezsys07.data.DataRecord;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
@@ -10,10 +10,10 @@ public interface DataRecordService {
     /**
      * Persist a DataRecord in the database
      *
-     * @param recordDTO The record that will be created and persisted
+     * @param record The record that will be created and persisted
      * @return The persisted DataRecord
      */
-    DataRecordDTO create(DataRecordDTO recordDTO);
+    DataRecord create(DataRecord record);
 
     /**
      * Deletes an existing record from the database.
@@ -22,7 +22,7 @@ public interface DataRecordService {
      * @param id The record that will be deleted
      * @return The deleted record
      */
-    DataRecordDTO delete(String id);
+    DataRecord delete(String id);
 
     /**
      * Finds a specific DataRecord
@@ -31,7 +31,7 @@ public interface DataRecordService {
      * @return The DataRecord if found
      * @throws EmptyResultDataAccessException
      */
-    DataRecordDTO findById(String id) throws EmptyResultDataAccessException;
+    DataRecord findById(String id) throws EmptyResultDataAccessException;
 
     /**
      * Finds every DataRecord that contains the given name up to a maximum of 100
@@ -39,16 +39,16 @@ public interface DataRecordService {
      * @param name The name that will be searched
      * @return A list of all DataRecords containing the given name
      */
-    List<DataRecordDTO> findTop100ByNameContainingIgnoreCase(String name);
+    List<DataRecord> findTop100ByNameContainingIgnoreCase(String name);
 
     /**
      * Updates a existing DataRecord
      *
-     * @param recordDTO The DataRecord that will be updated
+     * @param record The DataRecord that will be updated
      * @return The DTO of the updated DataRecord
      */
-    DataRecordDTO update(DataRecordDTO recordDTO);
+    DataRecord update(DataRecord record);
 
-    List<DataRecordDTO> findTop100();
+    List<DataRecord> findTop100();
 
 }

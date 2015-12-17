@@ -13,6 +13,7 @@ import static org.thymeleaf.util.Validate.*;
  * This class contains the entity data.
  *
  * @author Stefan Geyer
+ * @author Mathias Ritter
  * @version 20151205.1
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -34,15 +35,28 @@ public class DataRecord {
     @XmlElement(required = true)
     private String description;
 
+    /**
+     * Public constructor, so Spring can inject it
+     */
     public DataRecord() {
     }
 
+    /**
+     * Private constructor to create an object from a builder
+     *
+     * @param builder A builder that contains the information for this class
+     */
     private DataRecord(Builder builder) {
         this.name = builder.name;
         this.description = builder.description;
         this.id = builder.id;
     }
 
+    /**
+     * Objects can be instantiated by using this builder
+     *
+     * @return A builder to create an object
+     */
     public static Builder getBuilder() {
         return new Builder();
     }
@@ -55,6 +69,13 @@ public class DataRecord {
                 '}';
     }
 
+    /**
+     * Builder for the DataRecord class
+     *
+     * @author Stefan Geyer
+     * @author Mathias Ritter
+     * @version 20151205.1
+     */
     public static class Builder {
 
         private String name;
@@ -64,21 +85,44 @@ public class DataRecord {
         private Builder() {
         }
 
+        /**
+         * Sets the id field of the object
+         *
+         * @param id The new id
+         * @return Returns the Builder itself to allow method chaining
+         */
         public Builder id(String id) {
             this.id = id;
             return this;
         }
 
+        /**
+         * Sets the name field of the object
+         *
+         * @param name The new nmae
+         * @return Returns the Builder itself to allow method chaining
+         */
         public Builder name(String name) {
             this.name = name;
             return this;
         }
 
+        /**
+         * Sets the description field of the object
+         *
+         * @param description The new description
+         * @return Returns the Builder itself to allow method chaining
+         */
         public Builder description(String description) {
             this.description = description;
             return this;
         }
 
+        /**
+         * Converts the given data to an DataRecord
+         *
+         * @return Returns the converted object with the given information
+         */
         public DataRecord build() {
             DataRecord record = new DataRecord(this);
 
@@ -87,6 +131,9 @@ public class DataRecord {
             return record;
         }
 
+        /**
+         * Checks if the names are not null and fit the max limits
+         */
         private void checkRecordData() {
             notNull(this.name, "Name cannot be null");
             notEmpty(this.name, "Name cannot be empty");

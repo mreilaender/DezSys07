@@ -1,10 +1,9 @@
 package at.geyerritter.dezsys07.rest;
 
-import at.geyerritter.dezsys07.data.DataRecordDTO;
+import at.geyerritter.dezsys07.data.DataRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +33,7 @@ public class DataRecordViewController {
 
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET, produces = "text/html")
     public String displayDataRecords(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
-        List<DataRecordDTO> dataRecords = restController.findDataRecordsByName(name).getBody();
+        List<DataRecord> dataRecords = restController.findDataRecordsByName(name).getBody();
         model.addAttribute("dataRecords", dataRecords);
 
         // IntelliJ bug workaround (see class comment)
@@ -53,7 +52,7 @@ public class DataRecordViewController {
 
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "text/html")
     public String displayDataRecord(@PathVariable String id, Model model) {
-        DataRecordDTO dataRecord = restController.findDataRecord(id).getBody();
+        DataRecord dataRecord = restController.findDataRecord(id).getBody();
         model.addAttribute("dataRecord", dataRecord);
 
         // IntelliJ bug workaround (see class comment)

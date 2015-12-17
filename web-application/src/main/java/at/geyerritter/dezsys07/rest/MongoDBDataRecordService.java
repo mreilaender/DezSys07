@@ -1,7 +1,6 @@
 package at.geyerritter.dezsys07.rest;
 
 import at.geyerritter.dezsys07.data.DataRecord;
-import at.geyerritter.dezsys07.data.DataRecordDTO;
 import at.geyerritter.dezsys07.data.DataRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -32,46 +31,38 @@ public class MongoDBDataRecordService implements DataRecordService {
     }
 
     @Override
-    public DataRecordDTO create(DataRecordDTO recordDTO) {
-        DataRecord persisted = DataRecord.getBuilder()
-                .name(recordDTO.getName())
-                .description(recordDTO.getDescription())
-                .build();
-
-        persisted = repository.save(persisted);
-        return convertToDTO(persisted);
+    public DataRecord create(DataRecord record) {
+        record = repository.save(record);
+        return record;
     }
 
     @Override
-    public DataRecordDTO delete(String id) {
+    public DataRecord delete(String id) {
         DataRecord deleted = repository.findOne(id);
         repository.delete(deleted);
-        return convertToDTO(deleted);
+        return deleted;
     }
 
     @Override
-    public DataRecordDTO findById(String id) throws EmptyResultDataAccessException {
+    public DataRecord findById(String id) throws EmptyResultDataAccessException {
         DataRecord found = repository.findOne(id);
         if (found == null)
             throw new EmptyResultDataAccessException("There is no data record with id " + id, 1);
-        return convertToDTO(found);
+        return found;
     }
 
     @Override
-    public List<DataRecordDTO> findTop100ByNameContainingIgnoreCase(String name) {
-        List<DataRecord> records = repository.findTop100ByNameContainingIgnoreCase(name);
-        return records.stream().map(this::convertToDTO).collect(toList());
+    public List<DataRecord> findTop100ByNameContainingIgnoreCase(String name) {
+        return repository.findTop100ByNameContainingIgnoreCase(name);
     }
 
     @Override
-    public List<DataRecordDTO> findTop100() {
-        List<DataRecord> records = repository.findAll(new PageRequest(0, 100)).getContent();
-
-        return records.stream().map(this::convertToDTO).collect(toList());
+    public List<DataRecord> findTop100() {
+        return repository.findAll(new PageRequest(0, 100)).getContent();
     }
 
     @Override
-    public DataRecordDTO update(DataRecordDTO recordDTO) {
+    public DataRecord update(DataRecord recordDTO) {
 
         DataRecord updated = DataRecord.getBuilder()
                 .name(recordDTO.getName())
@@ -80,16 +71,6 @@ public class MongoDBDataRecordService implements DataRecordService {
                 .build();
 
         repository.save(updated);
-        return convertToDTO(updated);
-    }
-
-    /**
-     * Converts a DataRecord to a related DTO
-     *
-     * @param record The record that will be converted
-     * @return The converted DTO
-     */
-    private DataRecordDTO convertToDTO(DataRecord record) {
-        return new DataRecordDTO(record.getId(), record.getName(), record.getDescription());
+        return updated;
     }
 }

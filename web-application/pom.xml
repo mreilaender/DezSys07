@@ -14,6 +14,8 @@
     <artifactId>dezsys07-web-application</artifactId>
 
     <build>
+        <defaultGoal>tomcat7:deploy</defaultGoal>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
