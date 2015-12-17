@@ -5,6 +5,13 @@ import javax.xml.soap.SOAPConnectionFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
+/**
+ * Creates a connection to the server and sends the generated SOAP request
+ *
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ * @version 20151217.1
+ */
 public class SOAPConnector {
 
     private String webServiceURL;
@@ -16,6 +23,12 @@ public class SOAPConnector {
         this.webServiceURL = webServiceURL;
     }
 
+    /**
+     * Sends the request to the given server and returns the received response
+     *
+     * @return The received response
+     * @throws SOAPException Any SOAP error
+     */
     public SOAPMessage call() throws SOAPException {
         // Create SOAP Connection
         SOAPConnectionFactory connectionFactory = SOAPConnectionFactory.newInstance();

@@ -2,6 +2,13 @@ package at.geyerritter.dezsys07.client;
 
 import javax.xml.soap.*;
 
+/**
+ * The creates the SOAP request envelope with the required information
+ *
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ * @version 20151217.1
+ */
 public class DezSysSOAPMessageCreator implements SOAPMessageCreator {
 
     private String name;
@@ -13,19 +20,7 @@ public class DezSysSOAPMessageCreator implements SOAPMessageCreator {
     }
 
     /**
-     * The following request will be created: <br>
-     * <p>
-     * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gs="http://at/geyerritter/dezsys07/soa">
-     * <soapenv:Header/>
-     * <soapenv:Body>
-     * <gs:getDataRecordRequest>
-     * <gs:name>Ralph</gs:name>
-     * </gs:getDataRecordRequest>
-     * </soapenv:Body>
-     * </soapenv:Envelope>
-     *
-     * @return The SOAP Request Envelope to search for DataRecords
-     * @throws SOAPException Will be thrown if a SOAP related feature fails
+     * {@see SOAPMessageCreator#create}
      */
     @Override
     public SOAPMessage create() throws SOAPException {
