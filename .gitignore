@@ -158,3 +158,5 @@ local.properties
 /vagrant/.vagrant
 
 /vagrant/shared/data.json
+
+/documentation/javadoc
