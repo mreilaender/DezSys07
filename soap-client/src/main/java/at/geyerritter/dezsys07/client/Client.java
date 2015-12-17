@@ -4,6 +4,7 @@ import org.apache.commons.cli.ParseException;
 
 import javax.xml.soap.SOAPMessage;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
@@ -37,7 +38,7 @@ public class Client {
             SOAPMessage message = connector.call();
             String messageString = ClientUtils.soapMessageToString(message, true);
 
-            if (DUMP_PATH.isEmpty()) {
+            if (DUMP_PATH.isEmpty() || new File(DUMP_PATH).exists()) {
                 // check if the user wants to save the output to a file
                 System.out.println(messageString);
             } else {
