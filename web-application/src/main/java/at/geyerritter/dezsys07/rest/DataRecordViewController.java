@@ -43,6 +43,17 @@ public class DataRecordViewController {
         return "redirect:datarecords";
     }
 
+    /**
+     * Handles browser GET request (with accept text/html header) to the path "/datarecords". <br />
+     * This page is used to show data records in a table. Therefore data records are retrieved
+     * and additionally filtered by the given get parameter name.
+     * They are added as an attribute to the model, so they can be accessed by the thymeleaf templates. <br />
+     * The rendered "overview" template is returned by returning a string with the file name.
+     *
+     * @param name GET parameter name to filter the results
+     * @param model model that is used by the templates
+     * @return string with the filename of the template (gets rendered through the framework)
+     */
     @RequestMapping(value = "/datarecords", method = RequestMethod.GET, produces = "text/html")
     public String displayDataRecords(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
         List<DataRecord> dataRecords = restController.findDataRecordsByName(name).getBody();
@@ -57,11 +68,30 @@ public class DataRecordViewController {
         return "overview";
     }
 
+    /**
+     * Handles browser GET request (with accept text/html header) to the path "/datarecords/create". <br />
+     * This page is used to show a form in order to create a new data record. <br />
+     * The rendered "create" template is returned by returning a string with the file name.
+     *
+     * @return string with the filename of the template (gets rendered through the framework)
+     */
     @RequestMapping(value = "/datarecords/create", method = RequestMethod.GET, produces = "text/html")
     public String displayCreateDataRecords() {
         return "create";
     }
 
+    /**
+     * Handles browser GET request (with accept text/html header) to the path "/datarecords/{id}". <br />
+     * This page is used to show a specific data record so it can be edited. Therefore the data record with the
+     * id given in the URL is retrieved. It is then added as an attribute to the model so it can be accessed by the
+     * thymeleaf templates. <br />
+     *
+     * The rendered "edit" template is returned by returning a string with the file name.
+     *
+     * @param id id of the data record that will be shown.
+     * @param model model that is used by the templates
+     * @return string with the filename of the template (gets rendered through the framework)
+     */
     @RequestMapping(value = "/datarecords/{id}", method = RequestMethod.GET, produces = "text/html")
     public String displayDataRecord(@PathVariable String id, Model model) {
         DataRecord dataRecord = restController.findDataRecord(id).getBody();
@@ -76,6 +106,13 @@ public class DataRecordViewController {
         return "edit";
     }
 
+    /**
+     * This method is used to handle an EmptyResultDataAccessException. This Exception is thrown if an data record
+     * can not be found in the database, so a 404 page is returned to the user.
+     *
+     * @param ex Exception that should be handled
+     * @return 404 not found page
+     */
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleNotFound(Exception ex) {
