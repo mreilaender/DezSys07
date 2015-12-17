@@ -50,7 +50,7 @@ public class MongoDBDataRecordService implements DataRecordService {
     }
 
     /**
-     * @see @see at.geyerritter.dezsys07.rest.DataRecordService#findById
+     * @see at.geyerritter.dezsys07.rest.DataRecordService#findById
      */
     @Override
     public DataRecord findById(String id) throws EmptyResultDataAccessException {
