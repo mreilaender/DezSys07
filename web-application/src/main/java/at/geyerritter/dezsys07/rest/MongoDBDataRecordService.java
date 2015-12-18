@@ -12,9 +12,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 /**
- * This class accesses the database.
- * The Methods will return DTOs in order to cut the connection
- * of the model classes to the database.
+ * This class is used to access the database using a repository class.
  *
  * @version 20151211.1
  * @author Stefan Geyer

@@ -7,10 +7,11 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 /**
  * Entry point for the spring web application. <br>
- * Do not run via IntelliJ, build with maven install and run with spring-boot:run
+ * Do not run via IntelliJ, build with maven install and run with tomcat7:deploy
  *
- *
- *
+ * @author Stefan Geyer
+ * @author Mathias Ritter
+ * @version 20151217.1
  */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
