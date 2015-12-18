@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provider "virtualbox" do |vbox, override|
   #end
 
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "./shared", "/home/vagrant/mongo-dump/"
 
   # eth1: hostonly
